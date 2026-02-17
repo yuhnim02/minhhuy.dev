@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minhhuy.dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            background: #3a3a3a;
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* LEFT SIDE - Terminal Info (70%) */
+        .terminal-side {
+            width: 75%;
+            padding: 40px;
+            background: #252525
+;
+            border-right: 2px solid #057805;
+            overflow-y: auto;
+            height: 100vh;
+            position: relative;
+            left: 0;
+        }
+
+        .terminal-header {
+            color: #00ff00;
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+
+        .prompt {
+            color: #00ff00;
+            margin-bottom: 5px;
+        }
+
+        .prompt::before {
+            content: "$ ";
+            color: #00ff00;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            color: #07d425;
+            font-size: 2em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 0px #00b31b;
+        }
+
+        .section-title::before {
+            content: "> ";
+            color: #00ff00;
+        }
+
+        .info-line {
+            color: #ffffff;
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+
+        .info-line::before {
+            content: "• ";
+            color: #00b31b;
+        }
+
+        .command {
+            color: #ffff00;
+            margin: 10px 0;
+        }
+
+        .output {
+            color: #ffffff;
+            margin-left: 20px;
+            line-height: 1.8;
+            font-size: 1.3em;
+        }
+        .output_yellow{
+            color: #ffff00;
+        }   
+        .output_red{
+            color:#ff0000;
+        }
+        .output_green{
+            color: #00ff00;
+        }
+        .output_name_gpa{
+            font-size: 1.7em;
+        }
+        .output_experience{
+            font-size: 1.5em;
+        }
+        .output_load{
+            color: #b9b9b9;
+        }
+
+    
+        .skill-item {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 5px;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            font-size: 1.2em;
+        }
+
+        .link {
+            color: #00ffff;
+            text-decoration: none;
+            border-bottom: 1px dotted #00ffff;
+        }
+
+        .link:hover {
+            color: #ffff00;
+            border-bottom-color: #ffff00;
+        }
+
+        /* RIGHT SIDE - ID Card (30%) */
+        .card-side {
+            width: 25%;
+            height: 100vh;
+            position: relative;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        /* ID Card Container with Rope */
+        .id-card-wrapper {
+            position: relative;
+            animation: cardFall 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+            sway 4s ease-in-out 2.5s infinite;
+            transform-origin: top center;
+        }
+        @keyframes cardFall {
+            0% {
+                transform: translateY(-700px) rotate(-5deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 1;
+            }
+            70% {
+                transform: translateY(20px) rotate(-2deg);
+            }
+            80% {
+                transform: translateY(-15px) rotate(3deg);
+            }
+            90% {
+                transform: translateY(5px) rotate(-1deg);
+            }
+            95% {
+                transform: translateY(-3px) rotate(0.5deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes sway {
+            0%   { transform: rotate(0deg); }
+            25%  { transform: rotate(2deg); }
+            75%  { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+
+        /* Lanyard/Rope - attached to card */
+        .lanyard {
+            position: absolute;
+            top: -190px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 190px;
+            background: linear-gradient(to bottom, 
+                #555 0%,
+                #666 30%,
+                #777 60%,
+                #888 100%
+            );
+            box-shadow: 
+                1px 0 2px rgba(0, 0, 0, 0.5),
+                -1px 0 2px rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        /* Rope attachment point on card */
+        .rope-attachment {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0px;
+            height: 0px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            border: 1px solid #00ff00;
+            border-radius: 3px 3px 0 0;
+            z-index: 3;
+            box-shadow: 
+                0 2px 5px rgba(0, 255, 0, 0.3),
+                inset 0 1px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Metal ring on attachment */
+        .rope-attachment::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 10px;
+            background: #222;
+            border: 2px solid #888;
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ID Card */
+        .id-card {
+            width: 280px;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 3px solid #00ff00;
+            border-radius: 12px;
+            padding: 25px 20px;
+            box-shadow: 
+                0 10px 40px rgba(0, 255, 0, 0.3),
+                inset 0 0 20px rgba(0, 255, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .id-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, #00ff00 0%, #00ffff 100%);
+            opacity: 0.15;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .company-name {
+            color: #ffffff;
+            font-size: 1.4em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        .card-type {
+            color: #00ff00;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+
+        /* Photo Container */
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 15px auto;
+            border: 3px solid #00ff00;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            position: relative;
+            z-index: 2;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Card Info */
+        .card-info {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-name {
+            color: #ffffff; 
+            font-size: 2em;
+            margin: 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .card-title {
+            color: #ffffff;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+                .ascii {
+            font-family: 'Share Tech Mono', monospace;
+            white-space: pre;
+            line-height: 1;
+            background: none;
+            text-shadow: none;
+            transform: none;
+        }
+                .ascii_welcome {
+            font-size: clamp(10px, 1.2vw, 16px);
+            color: #ffffff;
+        }
+                .ascii_buv {
+            font-size: clamp(14px, 1.2vw, 20px);
+            color: #cb4e21
+        }
+        /* Typing cursor effect */
+        .cursor {
+            display: inline-block;
+            width: 5px;
+            height: 15px;
+            background: #b9b9b9;
+            animation: blink 1s infinite;
+            margin-left: 3px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        /* Scrollbar styling */
+        .terminal-side::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terminal-side::-webkit-scrollbar-track {
+            background: #0a0a0a;
+            border-left: 1px solid #00ff00;
+        }
+
+        .terminal-side::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 5px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .terminal-side {
+                width: 100%;
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 2px solid #00ff00;
+            }
+
+            .terminal-side::before {
+                width: 100%;
+            }
+
+            .card-side {
+                width: 100%;
+                position: relative;
+                height: 100vh;
+                margin-top: 20px;
+            }
+
+            .lanyard {
+                height: 100px;
+            }
+
+            .id-card {
+                width: 280px;
+                height: 400px;
+            }
+        }
+
+            .info {
+    list-style: none;     /* removes default bullet */
+    padding-left: 0;      /* removes default indent */
+    }
+
+    .info li::before {
+    content: "> ";        /* adds custom symbol */
+    color: #a5a5a5;       /* terminal green */
+    }
+
+        /* Glitch effect on hover */
+        .id-card:hover {
+            animation: glitch 0.3s ease-in-out;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+summary {
+    cursor: pointer;
+}
+
+summary:hover .output_load {
+    color: #ffffff;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- LEFT SIDE: Terminal (70%) -->
+        <div class="terminal-side">
+            <div class="terminal-header">
+                <div class="prompt">minhhuy.dev</div>
+                <div class="ascii ascii_welcome">
+                    <pre>██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
+██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
+██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
+██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
+╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗██╗██╗
+ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝╚═╝╚═╝
+                <div class="ascii ascii_buv">
+                    <pre>██████╗ ██╗   ██╗██╗   ██╗██╗
+██╔══██╗██║   ██║██║   ██║██║
+██████╔╝██║   ██║██║   ██║██║
+██╔══██╗██║   ██║╚██╗ ██╔╝╚═╝
+██████╔╝╚██████╔╝ ╚████╔╝ ██╗
+╚═════╝  ╚═════╝   ╚═══╝  ╚═╝</pre></div></pre>
+                </div>
+                <div class="output output_load">Loading candidate file...<span class="cursor"></span></div>
+            </div>
+
+            <section class="section">
+                <h2 class="section-title">who_am_i.exe</h2>
+                <div class="output output_name_gpa">
+                    NAME: MINH HUY LE <br>
+                    GPA: 9.60/10.00 <br>
+                    IELTS: 7.50/9.00 <br>
+                </div>
+                <div class="command">$ ABOUT ME - <i>"WHY NOT?”</i> <br></div>
+<div class="output">
+<ul class="info">
+
+<details class="qa">
+<summary><span class="output_load">'Self-studying Computer Science without any prior experience or guidance?'</span></summary>
+<div class="answer">
+<span class="output_yellow">Why not?</span> Started anyway - and here I am!
+</div>
+</details>
+
+<details class="qa">
+<summary><span class="output_load">'Be the lead actor for our spring festival performance?'</span></summary>
+<div class="answer">
+<span class="output_yellow">No.</span> (I took it eventually, and we somehow won 3rd place!)
+</div>
+</details>
+
+<details class="qa">
+<summary><span class="output_load">'Director of Photography for our class final performance?'</span></summary>
+<div class="answer">
+<span class="output_yellow">Why not?</span> — and this time, we actually won 1st place!
+</div>
+</details>
+
+<details class="qa">
+<summary><span class="output_load">'No you cannot build a DIY 3D printer right after getting your first ever machine.'</span></summary>
+<div class="answer">
+<span class="output_yellow">Why not!</span> Thanks to the open-source community, I'm enjoying every second of this journey.
+</div>
+</details>
+
+</ul>
+</div>
+<div class="command">$ Aspiration<br></div>
+<div class="output">
+    There exist, a fine line between being delusional and being bold. I did not achieve all of these by myself — I was standing on the shoulders of giants who made their knowledge freely available to anyone willing to try and learn.
+
+    My <span class="output_red">Greatest Aspiration</span> is to become one of those giants myself: to have my own Computer Science courses and contribute to open-source communities.    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">EXPERIENCE/EXTRACURRICULAR</h2>
+                <div class="command">$ ls experiences/</div>
+                <div class="output output_experience"><ul class="info">
+                    <li>Harvard's CS50: Introduction to Computer Science.<br></li>
+                    <li>Harvard's CS50P: Introduction to Python Programming.<br></li>
+                    <li>Researcher — SocrateCodes AI Tutoring.<br></li>
+                    <li>GMTK's Game Jam 2024.<br></li>
+                    <li>Youtube Content Creator: 500.000+ Views & 2.500+ Subscribers.  <br></li>
+
+                </ul></div>
+                <div class="command">$ ls extracurricular/</div>
+                <div class="output output_experience"><ul class="info">
+                    <li>Lead-actor in Class Performance during Vinschool Spring Festival 2024 - 3rd place. <br></li>
+                    <li>Editing/Image Director for Class Performance during Vinschool Spring Festival 2025 - 1st place. <br></li>
+                    <li>Content Editor at FYE – MQYT Charity: Donated over 400 uniforms, 17 backpacks, school materials and 1.500.000 VND to Tan Lap Highschool, Quang Tri. <br></li>
+                    <li>Video Editor at Vinschool Photography Club (VPC).</li>
+                </ul>
+                </div>
+            </section>
+
+            <section class="section">
+    <h2 class="section-title">REWARDS</h2>
+    <div class="command">$ ls rewards/</div>
+    <div class="output output_experience"><ul class="info">
+        <li>Top 10 students in the Principal's Nominee Group.<br></li>
+        <li>Silver Award, FISO Olympiad 2024-2025 national Math contest.<br></li>
+        <li>Silver Award, FISO Olympiad 2024-2025 national Science contest.<br></li>
+        <li>Bronze Award, FISO Olympiad 2023-2024 national Math contest.<br></li>
+    </div></ul>
+</section>
+
+            <section class="section">
+                <h2 class="section-title">FUTURE_PROJECTS.dir</h2>
+                <div class="command">$ ls -lh projects/</div>
+                <div class="output">
+                    <div style="margin-bottom: 20px;">
+                        <span style="color: #00ffff;">Voron for Viet/</span> [Python, CAD]<br>
+                        └─ Description: Develop language & hardware sourcing adjustments for the Voron project to provide better availability to Vietnamese users.<br>
+                        └─ Features: Adapted sourcing guide with local sellers, Localization UI for Mainsail menu.<br>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <span style="color: #00ffff;">CS2143 - "missing ';'"/</span><br>
+                        └─ Description: Inspired by the infamous “C2143” error and Harvard's CS50, CS2143 will be an introductory course focused on breaking and rebuilding CS definitions from scratch, equipping developers with a solid foundation in the time where mindlessly relying on AI is becoming the norm.<br>
+                        └─ Features: Emphasis on documents reading, style/correctness-check, Integrated 'hinting' AI-tutor.<br>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <span style="color: #00ffff;">'Yuhnim' Project/</span> [Adobe Premiere]<br>
+                        └─ Description: Capture the whole process of finishing 'Voron for Viet' and publish as a series on Youtube.<br>
+                        └─ Contents: Stages of the Project, Difficulties & 'How you can help'. <br>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section">
+                <div class="prompt">System ready...ready to learn!</div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: ID Card (35%) -->
+        <div class="card-side">
+            <div class="id-card-wrapper">
+                <div class="lanyard"></div>
+                <div class="id-card">
+                    <div class="rope-attachment"></div>
+                    <div class="card-header">
+                        <div class="company-name">Learner</div>
+                    </div>  
+                    
+                    <div class="photo-container">
+                        <img src="PIC.jpeg" alt="Your Photo">
+                    </div>
+                    
+                    <div class="card-info">
+                        <div class="card-name">MINH HUY LE</div>
+                        <div class="card-title">"That seems interesting, let's find out how it works."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
