@@ -108,7 +108,7 @@
             font-size: 1.5em;
         }
         .output_load{
-            color: #8f8f8f;
+            color: #aaaaaa;
         }
         .output_aboutme{
             color: #b9b9b9;
@@ -150,7 +150,7 @@
             overflow: hidden;
         }
 
-        /* ID Card Container with Rope */
+        /* ID Container with rope */
         .id-card-wrapper {
             position: relative;
             animation: cardFall 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
@@ -176,7 +176,7 @@
         }
 
 
-        /* Lanyard/Rope - attached to card */
+        /* Rope - attached to card */
         .lanyard {
             position: absolute;
             top: -230px;
@@ -270,12 +270,6 @@
             text-shadow: 0 0 10px #ffffff;
         }
 
-        .card-type {
-            color: #00ff00;
-            font-size: 1em;
-            margin-top: 5px;
-        }
-
         /* Photo Container */
         .photo-container {
             width: 150px;
@@ -316,8 +310,9 @@
         }
 
         .card-title {
-            color: #ffffff;
-            font-size: 1.2em;
+            color: #d7d7d7;
+            font-size: 1em;
+            margin-top: 10px;
             margin-bottom: 8px;
         }
 
@@ -435,7 +430,10 @@
     }
     .project-title {
     color: #ffffff;
-    font-size: 1.4 em;
+    font-size: 1.45 em;
+}
+.justified {
+    text-align: justify;
 }
 
 
@@ -475,14 +473,14 @@ summary:hover .output_load {
 ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗
 ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝
 ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗██╗██╗
- ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝╚═╝╚═╝
-                <div class="ascii ascii_buv">
+ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝╚═╝╚═╝</pre>
+                <span class="ascii ascii_buv">
                     <pre>██████╗ ██╗   ██╗██╗   ██╗██╗
 ██╔══██╗██║   ██║██║   ██║██║
 ██████╔╝██║   ██║██║   ██║██║
 ██╔══██╗██║   ██║╚██╗ ██╔╝╚═╝
 ██████╔╝╚██████╔╝ ╚████╔╝ ██╗
-╚═════╝  ╚═════╝   ╚═══╝  ╚═╝</pre></div></pre>
+╚═════╝  ╚═════╝   ╚═══╝  ╚═╝</pre></span>
                 </div>
             </div>
 
@@ -512,13 +510,6 @@ summary:hover .output_load {
 </details>
 
 <details class="qa">
-<summary><span class="output_load">'Director of Photography for our class final performance?'</span></summary>
-<div class="answer">
-<span class="output_yellow">Why not?</span> — and this time, we actually won 1st place!
-</div>
-</details>
-
-<details class="qa">
 <summary><span class="output_load">'No you cannot build a DIY 3D printer right after getting your first ever machine.'</span></summary>
 <div class="answer">
 <span class="output_yellow">Why not!</span> Thanks to the open-source community, I'm enjoying every second of this journey.
@@ -528,11 +519,11 @@ summary:hover .output_load {
 </ul>
 </div>
 <div class="command">$ Aspiration<br></div>
-<div class="output">
+<div class="output"><p class="justified">
     There exist, a fine line between being delusional and being bold. I did not achieve all of these by myself — I was standing on the shoulders of giants who made their knowledge freely available to anyone willing to try and learn.
 
-    My <span class="output_red">Greatest Aspiration</span> is to become one of those giants myself: to have my own Computer Science courses and contribute to open-source communities.    
-                </div>
+    My greatest <span class="output_red">Aspiration</span> is to become one of those giants myself: to have my own Computer Science courses and contribute to open-source communities.    
+                </p></div>
             </section>
 
             <section class="section">
@@ -550,8 +541,8 @@ summary:hover .output_load {
                 <div class="output output_experience"><ul class="info">
                     <li>Lead-actor in Class Performance during Vinschool Spring Festival 2024 - 3rd place. <br></li>
                     <li>Editing/Image Director for Class Performance during Vinschool Spring Festival 2025 - 1st place. <br></li>
-                    <li>Content Editor at FYE – MQYT Charity: Donated over 400 uniforms, 17 backpacks, school materials and 1.500.000 VND to Tan Lap Highschool, Quang Tri. <br></li>
-                    <li>Video Editor at Vinschool Photography Club (VPC).</li>
+                    <li>Content Editor, FYE – MQYT Charity: Donated over 400 uniforms, 17 backpacks, school materials and 1.500.000 VND to Tan Lap Highschool, Quang Tri. <br></li>
+                    <li>Video Editor, Vinschool Photography Club (VPC).</li>
                 </ul>
                 </div>
             </section>
@@ -577,15 +568,15 @@ summary:hover .output_load {
                         └─ Features: Adapted sourcing guide with local sellers, Localization UI for Mainsail menu.<br>
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <span class = "project-title">CS2143 - "missing ';'"/</span><br>
-                        └─ Description: Inspired by the infamous “C2143” error and Harvard's CS50, CS2143 will be an introductory course focused on breaking and rebuilding CS definitions from scratch, equipping developers with a solid foundation in the time where mindlessly relying on AI is becoming the norm.<br>
-                        └─ Features: Emphasis on documents reading, style/correctness-check, Integrated 'hinting' AI-tutor.<br>
+                        <span class = "project-title">CS2143 - "missing ';'"/</span><br><p class="justified">
+                        └─ Description: A foundational CS course designed to rebuild core definitions in an AI-dominated era.<br>
+                        └─ Features: Emphasis on documents reading, style/correctness-check, Integrated 'hinting' AI-tutor.<br></p>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <span class = "project-title">'Yuhnim' Project/</span> [Adobe Premiere]<br>
+                        <span class = "project-title">'Yuhnim' Project/</span> [Adobe Premiere]<br><p class="justified">
                         └─ Description: Capture the whole process of finishing 'Voron for Viet' and publish as a series on Youtube.<br>
-                        └─ Contents: Stages of the Project, Difficulties & 'How you can help'. <br>
+                        └─ Contents: Stages of the Project, Difficulties & 'How you can help'. <br></p>
                     </div>
                 </div>
             </section>
@@ -593,11 +584,11 @@ summary:hover .output_load {
             <div class="section">
                 <div class="prompt">BETA.v2026.01.01
                 </div>
-                <div class="output">
+                <div class="output output_aboutme">
                 Never a dull moment since this journey began,
                 a day that I learned something new is a good day; no matter if its finding out how an atom truly look like or the fact that beavers 
-                mate for life. My long-term goal is to build and share — tools, ideas, and stories that help others think more clearly about technology and the world. To do that well, I need to be surrounded by people who are ambitious and relentless about learning.
-                I see BUV as a place where that kind of intellectual environment can exist.
+                mate for life. As stated, my long-term goal is to build and share — tools, ideas, and stories that help others think more clearly about technology and the world. To do that well, I need to be surrounded by people who are ambitious and relentless about learning.
+                I see <span class="output_red">BUV</span> as a place where that kind of intellectual environment can exist.
                 
         <div class="image-container">
             <div class="image-card">
@@ -648,4 +639,3 @@ summary:hover .output_load {
     </div>
 </body>
 </html>
-
