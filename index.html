@@ -96,7 +96,7 @@
             color: #ffff00;
         }   
         .output_red{
-            color:#ff0000;
+            color:#cb4e21;
         }
         .output_green{
             color: #00ff00;
@@ -108,6 +108,9 @@
             font-size: 1.5em;
         }
         .output_load{
+            color: #8f8f8f;
+        }
+        .output_aboutme{
             color: #b9b9b9;
         }
 
@@ -150,7 +153,7 @@
         /* ID Card Container with Rope */
         .id-card-wrapper {
             position: relative;
-            animation: cardFall 2.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+            animation: cardFall 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
             sway 4s ease-in-out 2.5s infinite;
             transform-origin: top center;
         }
@@ -158,23 +161,7 @@
             0% {
                 transform: translateY(-700px) rotate(-5deg);
                 opacity: 0;
-            }
-            50% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 1;
-            }
-            70% {
-                transform: translateY(20px) rotate(-2deg);
-            }
-            80% {
-                transform: translateY(-15px) rotate(3deg);
-            }
-            90% {
-                transform: translateY(5px) rotate(-1deg);
-            }
-            95% {
-                transform: translateY(-3px) rotate(0.5deg);
-            }
+            }  
             100% {
                 transform: translateY(0px) rotate(0deg);
                 opacity: 1;
@@ -192,11 +179,11 @@
         /* Lanyard/Rope - attached to card */
         .lanyard {
             position: absolute;
-            top: -190px;
+            top: -230px;
             left: 50%;
             transform: translateX(-50%);
             width: 3px;
-            height: 190px;
+            height: 230px;
             background: linear-gradient(to bottom, 
                 #555 0%,
                 #666 30%,
@@ -378,6 +365,29 @@
             background: #00ff00;
             border-radius: 5px;
         }
+        .image-container {
+    display: flex;
+    gap: 20px;               /* space between images */
+    justify-content: center; /* center them horizontally */
+    align-items: flex-start; /* align captions properly */
+    flex-wrap: wrap;         /* allows stacking on small screens */
+        }
+
+        .image-card {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .caption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
 
         /* Mobile Responsive */
         @media (max-width: 1024px) {
@@ -423,6 +433,11 @@
     content: "> ";        /* adds custom symbol */
     color: #a5a5a5;       /* terminal green */
     }
+    .project-title {
+    color: #ffffff;
+    font-size: 1.4 em;
+}
+
 
         /* Glitch effect on hover */
         .id-card:hover {
@@ -469,13 +484,13 @@ summary:hover .output_load {
 ██████╔╝╚██████╔╝ ╚████╔╝ ██╗
 ╚═════╝  ╚═════╝   ╚═══╝  ╚═╝</pre></div></pre>
                 </div>
-                <div class="output output_load">Loading candidate file...<span class="cursor"></span></div>
+                <div class="output output_aboutme">Loading candidate file...<span class="cursor"></span></div>
             </div>
 
             <section class="section">
-                <h2 class="section-title">who_am_i.exe</h2>
+                <h2 class="section-title">ABOUT_ME.EXE</h2>
                 <div class="output output_name_gpa">
-                    NAME: MINH HUY LE <br>
+                    NAME: Minh Huy Le <br>
                     GPA: 9.60/10.00 <br>
                     IELTS: 7.50/9.00 <br>
                 </div>
@@ -556,20 +571,20 @@ summary:hover .output_load {
             <section class="section">
                 <h2 class="section-title">FUTURE_PROJECTS.dir</h2>
                 <div class="command">$ ls -lh projects/</div>
-                <div class="output">
+                <div class="output output_aboutme">
                     <div style="margin-bottom: 20px;">
-                        <span style="color: #00ffff;">Voron for Viet/</span> [Python, CAD]<br>
+                        <span class = "project-title">Voron for Viet/</span> [Python, CAD]<br>
                         └─ Description: Develop language & hardware sourcing adjustments for the Voron project to provide better availability to Vietnamese users.<br>
                         └─ Features: Adapted sourcing guide with local sellers, Localization UI for Mainsail menu.<br>
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <span style="color: #00ffff;">CS2143 - "missing ';'"/</span><br>
+                        <span class = "project-title">CS2143 - "missing ';'"/</span><br>
                         └─ Description: Inspired by the infamous “C2143” error and Harvard's CS50, CS2143 will be an introductory course focused on breaking and rebuilding CS definitions from scratch, equipping developers with a solid foundation in the time where mindlessly relying on AI is becoming the norm.<br>
                         └─ Features: Emphasis on documents reading, style/correctness-check, Integrated 'hinting' AI-tutor.<br>
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <span style="color: #00ffff;">'Yuhnim' Project/</span> [Adobe Premiere]<br>
+                        <span class = "project-title">'Yuhnim' Project/</span> [Adobe Premiere]<br>
                         └─ Description: Capture the whole process of finishing 'Voron for Viet' and publish as a series on Youtube.<br>
                         └─ Contents: Stages of the Project, Difficulties & 'How you can help'. <br>
                     </div>
@@ -577,7 +592,36 @@ summary:hover .output_load {
             </section>
 
             <div class="section">
-                <div class="prompt">System ready...ready to learn!</div>
+                <div class="prompt">BETA.v2026.01.01
+                </div>
+                <div class="output">
+                Never a dull moment since this journey began,
+                a day that I learned something new is a good day; no matter if its finding out how an atom truly look like or the fact that beavers 
+                mate for life. My long-term goal is to build and share — tools, ideas, and stories that help others think more clearly about technology and the world. To do that well, I need to be surrounded by people who are ambitious and relentless about learning.
+                I see BUV as a place where that kind of intellectual environment can exist.
+                
+        <div class="image-container">
+            <div class="image-card">
+                <img src="2025.jpg" alt="Description of image 1">
+                <p class="caption">Vinschool SpringFest 2024.</p>
+            </div>
+
+            <div class="image-card">
+                <img src="2024.jpg" alt="Description of image 2">
+                <p class="caption">Vinschool SpringFest 2025.</p>
+            </div>
+        </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Contacts/</h2>
+                <div class="command">$ ls contacts/</div>
+                <div class="output">
+                    Email: Yuhnim2002@gmail.com <br>
+                    Phone: +84966658361 <br>
+                </div>
+
             </div>
         </div>
 
